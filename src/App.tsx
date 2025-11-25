@@ -48,6 +48,7 @@ function App() {
               '--altcha-color-base': '#242424',
               'display': altchaVisible ? 'block' : 'none',
             }}
+            // hidefooter={true},
             onStateChange={(ev) => {
               if ('detail' in ev) {
                 // Toggle indicator
@@ -69,6 +70,8 @@ function App() {
                 }
               }
             }}
+            hidefooter
+            hidelogo
           />
         </fieldset>
 
