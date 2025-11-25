@@ -8,6 +8,7 @@ function App() {
   const altchaRef = useRef<HTMLInputElement>(null)
   const [altchaVerifying, setAltchaVerifying] = useState<boolean>(false)
   const [altchaVisible, setAltchaVisible] = useState<boolean>(false)
+  const [altchaToken, setAltchaToken] = useState<string>("")
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -41,7 +42,7 @@ function App() {
 
         <fieldset>
           <Altcha
-            auto="onsubmit"
+            auto="onload"
             style={{
               '--altcha-max-width': '100%',
               '--altcha-color-base': '#242424',
@@ -60,6 +61,11 @@ function App() {
                 if (ev.detail.state === 'unverified') {
                   // Verification failed, show the widget or alert the user
                   setAltchaVisible(true)
+                }
+
+                if (ev.detail.state === 'verified') {
+                  console.log("Altcha Token", ev.detail.payload)
+                  setAltchaToken(ev.detail.payload)
                 }
               }
             }}
